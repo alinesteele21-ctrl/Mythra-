@@ -1,16 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-app.use(bodyParser.json());
+// db.js - conexão PostgreSQL via Railway
+const { Pool } = require('pg');
 
-// ===================== IMPORTANDO MÓDULOS =====================
-const modules = require('./modules/modules'); // seu modules.js com todos os módulos
-
-// ===================== USANDO OS MÓDULOS =====================
-app.use('/', modules);
-
-// ===================== INICIANDO SERVIDOR =====================
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Mythra backend rodando na porta ${PORT}`);
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } // necessário para Railway
 });
+
+module.exports = pool;
