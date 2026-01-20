@@ -1,7 +1,7 @@
 {
-  "name": "mythra-backend",
+  "name": "mythra",
   "version": "1.0.0",
-  "description": "Backend da plataforma Mythra",
+  "description": "Sistema Mythra - Backend All In One",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
