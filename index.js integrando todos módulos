@@ -1,12 +1,22 @@
-const pool = require('./db');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-async function testarConexao() {
-  try {
-    const res = await pool.query('SELECT NOW()');
-    console.log('Banco conectado! Data atual:', res.rows[0]);
-  } catch (err) {
-    console.error('Erro ao conectar no banco:', err);
-  }
-}
+const app = express();
+app.use(bodyParser.json());
 
-testarConexao();
+// Importa os módulos
+const modules = require("./módulos/modules");
+
+// Usa os módulos
+app.use("/", modules);
+
+// Rota teste
+app.get("/", (req, res) => {
+  res.send("🚀 Mythra Backend rodando com sucesso!");
+});
+
+// Inicia servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Mythra backend rodando na porta ${PORT}`);
+});
