@@ -1,17 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-// Importando módulos
-const clientes = require("./clientes");
 const administrativo = require("./administrativo");
-const financeiro = require("./financeiro");
-const rh = require("./rh");
+const clientes = require("./clientes");
 
-// Registrando rotas
-router.use(clientes);
-router.use(administrativo);
-router.use(financeiro);
-router.use(rh);
+router.use("/admin", administrativo);
+router.use("/api", clientes);
 
 module.exports = router;
+
 
